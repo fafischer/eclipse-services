@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report>
+    <copyrightInfo>(c) 2013 te2m.de</copyrightInfo>
+    <description>JaxWS based webservice</description>
+    <name>Te2mJaxWSService</name>
+    <targets>
+        <name>'src/main/java/'.concat(bo.packageName).replace('.','/').concat('/').concat(bo.javaName).concat('.java')</name>
+        <template>/*
+* ${info.copyrightInfo}
+*/
+
+package ${bo.packageName};
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+&lt;#if bo.imports??&gt;&lt;#list bo.imports as o&gt;
+import ${o};
+&lt;/#list&gt;&lt;/#if&gt;
+
+/**
+ * ${bo.description}
+ * 
+ * @author ${info.author}
+ * @since ${info.version}
+ */
+@WebService()
+public class ${bo.javaName} {
+
+&lt;#if bo.operations??&gt;&lt;#list bo.operations as o&gt;
+    /**
+    * ${o.description}
+&lt;#if o.parameters??&gt;&lt;#list o.parameters as p&gt;
+    * @param a${p.javaName} ${p.description}
+&lt;/#list&gt;&lt;/#if&gt;
+&lt;#if o.returnValue??&gt;
+    * @return ${o.returnValue.javaName} ${o.returnValue.description} 
+&lt;/#if&gt;
+    * @since ${info.version}
+    */
+	@WebMethod
+    public &lt;#if o.returnValue??&gt;${o.returnValue.javaTypeName}&lt;#else&gt;void&lt;/#if&gt; ${o.name}(&lt;#if o.parameters??&gt;&lt;#list o.parameters as p&gt;${p.javaTypeName} a${p.javaName}&lt;#if p_has_next&gt;,&lt;/#if&gt;&lt;/#list&gt;&lt;/#if&gt;)
+    {
+        // ToDo Implement method
+        &lt;#if o.returnValue??&gt;
+        ${o.returnValue.javaTypeName} a${o.returnValue.javaName} = null;
+        return a${o.returnValue.javaName};
+        &lt;/#if&gt;
+    }   
+
+&lt;/#list&gt;
+&lt;/#if&gt;
+    
+}
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+    <targets>
+        <name>'src/main/java/'.concat(bo.packageName).replace('.','/').concat('/').concat('package-info.java')</name>
+        <template>/*
+* ${info.copyrightInfo}
+*/
+/**
+ * ToDo Add a description for this package
+ * 
+ * @author ${info.author}
+ * @since ${info.version}
+ */
+package ${bo.packageName};
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+</report>

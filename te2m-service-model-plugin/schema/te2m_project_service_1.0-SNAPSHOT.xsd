@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bns="http://te2m.de/api/ext/project/bo" xmlns:cns="http://te2m.de/api/ext/core" xmlns:sns="http://te2m.de/api/ext/project/service" elementFormDefault="qualified" targetNamespace="http://te2m.de/api/ext/project/service" version="1.0">
+
+  <xs:import namespace="http://te2m.de/api/ext/project/bo" schemaLocation="te2m_project_bo_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/core" schemaLocation="te2m_core_1.0-SNAPSHOT.xsd"/>
+
+  <xs:complexType name="systemInfo">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="services" nillable="true" type="sns:service"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="service">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="behavior" type="sns:ServiceBehavior"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="configuration" nillable="true" type="bns:parameterInfo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="operations" nillable="true" type="bns:operation"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ServiceBehavior">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CONSUMES"/>
+      <xs:enumeration value="PROVIDES"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

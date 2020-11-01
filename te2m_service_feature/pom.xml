@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <relativePath>../pom.xml</relativePath>
+    <groupId>de.te2m.tools.eclipse</groupId>
+    <artifactId>project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+
+  <artifactId>te2m_service_feature</artifactId>
+  <packaging>eclipse-feature</packaging>
+
+  <name>te2m.de Services Feature</name>
+</project> 

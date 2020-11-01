@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.te2m.tools.eclipse</groupId>
+	<artifactId>project</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>te2m.de eclipse tools for projects</name>
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0</name>
+		</license>
+	</licenses>
+	<organization>
+		<name>te2m.de</name>
+		<url>http://te2m.de</url>
+	</organization>
+
+	<modules>
+		<module>te2m-service-axis2-plugin</module>
+		<!--<module>de.te2m.tools.eclipse.utils.reporting</module> -->
+		<module>te2m-service-model-plugin</module>
+		<module>te2m-service-help</module>
+		<module>te2m_service_feature</module>
+		<module>te2m-service-tools-p2updatesite</module>
+	</modules>
+
+	<properties>
+		<tycho-version>2.0.0</tycho-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>helios</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/helios</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<pomDependencies>consider</pomDependencies>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

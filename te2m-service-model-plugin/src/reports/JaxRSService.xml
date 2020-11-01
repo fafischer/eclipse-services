@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report>
+    <copyrightInfo>(c) 2013 te2m.de</copyrightInfo>
+    <description>JaxRS based webservice</description>
+    <name>Te2mJaxRSService</name>
+    <targets>
+        <name>'src/main/java/'.concat(bo.packageName).replace('.','/').concat('/').concat(bo.javaName).concat('.java')</name>
+        <template>/*
+* ${info.copyrightInfo}
+*/
+
+package ${bo.packageName};
+
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
+&lt;#if bo.imports??&gt;&lt;#list bo.imports as o&gt;
+import ${o};
+&lt;/#list&gt;&lt;/#if&gt;
+
+/**
+ * ${bo.description}
+ * 
+ * This class implements a RESTful web service.
+ * &lt;#if bo.properties['jaxrs.path']??&gt;&lt;p&gt;The service path is &lt;code&gt;${bo.properties['jaxrs.path']}&lt;/code&gt;&lt;/p&gt;&lt;/#if&gt;	
+ * 
+ * @author ${info.author}
+ * @since ${info.version}
+ */
+&lt;#if bo.properties['jaxrs.consumes']??&gt;@Consumes({&quot;${bo.properties['jaxrs.consumes']}&quot;})&lt;/#if&gt;
+&lt;#if bo.properties['jaxrs.produces']??&gt;@Produces({&quot;${bo.properties['jaxrs.produces']}&quot;})&lt;/#if&gt;
+&lt;#if bo.properties['jaxrs.path']??&gt;@Path(&quot;${bo.properties['jaxrs.path']}&quot;)&lt;/#if&gt;
+public class ${bo.javaName} {
+
+&lt;#if bo.operations??&gt;&lt;#list bo.operations as o&gt;
+    /**
+    * ${o.description}
+&lt;#if o.parameters??&gt;&lt;#list o.parameters as p&gt;
+    * @param a${p.javaName} ${p.description}
+&lt;/#list&gt;&lt;/#if&gt;
+&lt;#if o.returnValue??&gt;
+    * @return ${o.returnValue.javaName} ${o.returnValue.description} 
+&lt;/#if&gt;
+    * @since ${info.version}
+    */
+	
+	&lt;#if o.properties['jaxrs.method']??&gt;${o.properties['jaxrs.method']}&lt;/#if&gt;
+	&lt;#if o.properties['jaxrs.consumes']??&gt;@Consumes({&quot;${o.properties['jaxrs.consumes']}&quot;})&lt;/#if&gt;
+	&lt;#if o.properties['jaxrs.produces']??&gt;@Produces({&quot;${o.properties['jaxrs.produces']}&quot;})&lt;/#if&gt;
+	&lt;#if o.properties['jaxrs.path']??&gt;@Path(&quot;${o.properties['jaxrs.path']}&quot;)&lt;/#if&gt;
+    public &lt;#if o.returnValue??&gt;${o.returnValue.javaTypeName}&lt;#else&gt;void&lt;/#if&gt; ${o.name}(&lt;#if o.parameters??&gt;&lt;#list o.parameters as p&gt;${p.javaTypeName} a${p.javaName}&lt;#if p_has_next&gt;,&lt;/#if&gt;&lt;/#list&gt;&lt;/#if&gt;)
+    {
+        // ToDo Implement method
+        &lt;#if o.returnValue??&gt;
+        ${o.returnValue.javaTypeName} a${o.returnValue.javaName} = null;
+        return a${o.returnValue.javaName};
+        &lt;/#if&gt;
+    }   
+
+&lt;/#list&gt;
+&lt;/#if&gt;
+    
+}
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+    <targets>
+        <name>'src/site/resources/'.concat(bo.javaName).concat('_doc.html')</name>
+        <template>&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;${bo.name}&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;Service ${bo.name}&lt;/h1&gt;
+		&lt;p&gt;${bo.description}&lt;/p&gt;
+		&lt;#if bo.operations??&gt;
+			This service provides the following operations:
+			&lt;ul&gt;
+				&lt;#list bo.operations as o&gt;
+    			&lt;li&gt;${o.name}&lt;/li&gt;
+				&lt;/#list&gt;
+			&lt;/ul&gt;
+		&lt;/#if&gt;
+
+		&lt;#if bo.operations??&gt;
+			&lt;h2&gt;Service Operations&lt;/h2&gt;
+			&lt;#list bo.operations as o&gt;
+			&lt;h3&gt;${o.name}&lt;/h3&gt;
+    		&lt;p&gt;${o.description}&lt;/p&gt;
+			
+			&lt;#if o.parameters??&gt;
+			&lt;h4&gt;Parameters&lt;/h4&gt;
+			&lt;table border=&quot;1&quot;&gt;
+			&lt;tr&gt;
+			&lt;td&gt;Name&lt;/td&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;Type&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;#list o.parameters as p&gt;
+    		&lt;tr&gt;
+			&lt;td&gt;${p.javaName}&lt;/td&gt;
+			&lt;td&gt;${p.description}&lt;/td&gt;
+			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;/#list&gt;
+			&lt;/table&gt;
+			&lt;/#if&gt;
+			&lt;#if o.returnValue??&gt;
+    		&lt;h4&gt;Return Value&lt;/h4&gt;
+    		
+    		&lt;table border=&quot;1&quot;&gt;
+			&lt;tr&gt;
+			&lt;td&gt;Name&lt;/td&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;Type&lt;/td&gt;
+			&lt;/tr&gt;
+    		&lt;tr&gt;
+			&lt;td&gt;${o.returnValue.name}&lt;/td&gt;
+			&lt;td&gt;${o.returnValue.description}&lt;/td&gt;
+			&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;/table&gt; 
+			&lt;/#if&gt;
+			&lt;/#list&gt;
+		&lt;/#if&gt;	
+		&lt;h2&gt;Tasks&lt;/h2&gt;
+		&lt;p&gt;
+		In order to implement this service the following tasks are required:
+		&lt;/p&gt;	
+		&lt;table border=&quot;1&quot;&gt;
+			&lt;thead&gt;
+			&lt;tr&gt;
+			&lt;td&gt;Name&lt;/td&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;Estimation&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+			&lt;tr&gt;
+			&lt;td&gt;Data Mapping&lt;/td&gt;&lt;td&gt;Define all required data mappings&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Implementation&lt;/td&gt;&lt;td&gt;Implement the service&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Test coverage&lt;/td&gt;&lt;td&gt;Implement all required tests in order to validate the service&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Documentation&lt;/td&gt;&lt;td&gt;Document the interface&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/head&gt;
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+    <targets>
+        <name>'pom.xml'</name>
+        <template>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- 
+${info.copyrightInfo}
+--&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;${pomInfo.groupID}&lt;/groupId&gt;
+  &lt;artifactId&gt;${pomInfo.artifactID}&lt;/artifactId&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;${project.name}&lt;/name&gt;
+  &lt;description&gt;${project.description}&lt;/description&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;javax&lt;/groupId&gt;
+      &lt;artifactId&gt;javaee-web-api&lt;/artifactId&gt;
+      &lt;version&gt;6.0&lt;/version&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.5.1&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;source&gt;1.6&lt;/source&gt;
+          &lt;target&gt;1.6&lt;/target&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.2&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  &lt;/properties&gt;
+&lt;/project&gt;
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+    <targets>
+        <name>'src/site/site.xml'</name>
+        <template>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/DECORATION/1.0.0&quot;
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd&quot;&gt;
+    
+    &lt;!--
+    &lt;bannerLeft&gt;
+        &lt;name&gt;TODO Edit&lt;/name&gt;
+        &lt;src&gt;../images/logo.png&lt;/src&gt;
+    &lt;/bannerLeft&gt;
+    &lt;bannerRight&gt;
+	&lt;/bannerRight&gt;
+	--&gt;
+    &lt;body&gt;
+        &lt;links&gt;
+            &lt;item name=&quot;Project Home&quot; href=&quot;.&quot; /&gt;
+        &lt;/links&gt;
+        &lt;menu name=&quot;Services&quot;&gt;
+        	&lt;item name=&quot;${bo.name}&quot; href=&quot;${bo.javaName}_doc.html&quot;/&gt;
+        &lt;/menu&gt;
+    &lt;/body&gt;
+
+&lt;/project&gt;
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+    <targets>
+        <name>'src/main/java/'.concat(bo.packageName).replace('.','/').concat('/').concat('package-info.java')</name>
+        <template>/*
+* ${info.copyrightInfo}
+*/
+/**
+ * ToDo Add a description for this package
+ * 
+ * @author ${info.author}
+ * @since ${info.version}
+ */
+package ${bo.packageName};
+</template>
+        <templateType>FREEMARKER</templateType>
+    </targets>
+</report>

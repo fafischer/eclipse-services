@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="te2m.de"
+            id="de-te2m-eclipse-generator">
+      </category>
+      <view
+            name="Service Modelling View"
+            icon="icons/logo.png"
+            category="de-te2m-eclipse-generator"
+            class="de.te2m.eclipse.service.views.ServiceDesignView"
+            id="de.te2m.eclipse.service.views.ServiceDesignView">
+      </view>
+      <view
+            name="Resource List View"
+            icon="icons/logo.png"
+            category="de-te2m-eclipse-generator"
+            class="de.te2m.eclipse.service.views.ResourceListView"
+            id="de.te2m.eclipse.service.views.ResourceListView">
+      </view>
+      
+      <view
+            name="Object List View"
+            icon="icons/logo.png"
+            category="de-te2m-eclipse-generator"
+            class="de.te2m.eclipse.service.views.ObjectListView"
+            id="de.te2m.eclipse.service.views.ObjectListView">
+      </view>
+       <view
+            name="Object Tree View"
+            icon="icons/logo.png"
+            category="de-te2m-eclipse-generator"
+            class="de.te2m.eclipse.service.views.ObjectTreeView"
+            id="de.te2m.eclipse.service.views.ObjectTreeView">
+      </view>
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               id="de.te2m.eclipse.service.views.ServiceDesignView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="de.te2m.eclipse.service.wizards.impex.sampleCategory"
+            name="Sample File Import">
+      </category>
+      <wizard
+            category="de.te2m.eclipse.service.wizards.impex.sampleCategory"
+            class="de.te2m.eclipse.service.wizards.impex.ImportWizard"
+            icon="icons/sample.gif"
+            id="de.te2m.eclipse.service.wizards.impex.ImportWizard"
+            name="Import File">
+         <description>
+            Import a file from the local file system into the workspace.
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.te2m.eclipse.service.preferences.MainPreferencePage"
+            id="de.te2m.eclipse.service.preferences.MainPreferencePage"
+            name="temtools">
+      </page>
+      <page
+            class="de.te2m.eclipse.service.preferences.GeneratorPreferencePage"
+            category="de.te2m.eclipse.service.preferences.MainPreferencePage"
+            id="de.te2m.eclipse.service.preferences.GeneratorPreferencePage"
+            name="Generator">
+      </page>
+      <page
+            class="de.te2m.eclipse.service.preferences.ConnectionPreferencePage"
+            category="de.te2m.eclipse.service.preferences.MainPreferencePage"
+            id="de.te2m.eclipse.service.preferences.ConnectionPreferencePage"
+            name="Connection">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.te2m.eclipse.service.preferences.MainPreferenceInitializer">
+      </initializer>
+      <initializer
+            class="de.te2m.eclipse.service.preferences.ConnectionPreferenceInitializer">
+      </initializer>
+      <initializer
+            class="de.te2m.eclipse.service.preferences.GeneratorPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.te2m.eclipse.service.perspectives.ServiceModelingPerspective"
+            icon="icons/logo.png"
+            id="de.te2m.eclipse.service.perspectives.ServiceModelingPerspective"
+            name="temtools">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="te2m-eclipse-new-file"
+            name="te2m.de">
+      </category>
+      <wizard
+            category="te2m-eclipse-new-file"
+            class="de.te2m.eclipse.service.wizards.emitter.MiscWizard"
+            icon="icons/sample.gif"
+            id="de.te2m.eclipse.service.wizards.emitter.MiscWizard"
+            name="Do some magic">
+      </wizard>
+   </extension>
+
+</plugin>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bns="http://te2m.de/api/ext/project/bo" xmlns:cfgns="http://te2m.de/api/ext/project/config" xmlns:cns="http://te2m.de/api/ext/core" elementFormDefault="qualified" targetNamespace="http://te2m.de/api/ext/project/config" version="1.0">
+
+  <xs:import namespace="http://te2m.de/api/ext/project/bo" schemaLocation="te2m_project_bo_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/core" schemaLocation="te2m_core_1.0-SNAPSHOT.xsd"/>
+
+  <xs:complexType name="cfgProfile">
+    <xs:complexContent>
+      <xs:extension base="cns:idObject">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="configuration" nillable="true" type="cfgns:cfgValue"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="cfgValue">
+    <xs:complexContent>
+      <xs:extension base="cns:idObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="configurationDef" type="xs:IDREF"/>
+          <xs:element minOccurs="0" name="value" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

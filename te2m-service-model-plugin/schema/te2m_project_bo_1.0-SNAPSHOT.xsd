@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bns="http://te2m.de/api/ext/project/bo" xmlns:cns="http://te2m.de/api/ext/core" elementFormDefault="qualified" targetNamespace="http://te2m.de/api/ext/project/bo" version="1.0">
+
+  <xs:import namespace="http://te2m.de/api/ext/core" schemaLocation="te2m_core_1.0-SNAPSHOT.xsd"/>
+
+  <xs:complexType name="parameterInfo">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paramClass" type="xs:IDREF"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="classInfo">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element name="typeEnum" type="bns:typeEnum"/>
+          <xs:element name="enumValues">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element minOccurs="0" name="key" type="xs:string"/>
+                      <xs:element minOccurs="0" name="value" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="generate" type="xs:boolean"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="member" nillable="true" type="bns:parameterInfo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="operations" nillable="true" type="bns:operation"/>
+          <xs:element minOccurs="0" name="pkg" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operation">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="bns:parameterInfo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="parameter" nillable="true" type="bns:parameterInfo"/>
+          <xs:element minOccurs="0" name="returnValue" type="bns:parameterInfo"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="typeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TYPE"/>
+      <xs:enumeration value="ENUM"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

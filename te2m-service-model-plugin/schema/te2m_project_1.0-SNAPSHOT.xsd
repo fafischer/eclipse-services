@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bns="http://te2m.de/api/ext/project/bo" xmlns:cfgns="http://te2m.de/api/ext/project/config" xmlns:cns="http://te2m.de/api/ext/core" xmlns:sns="http://te2m.de/api/ext/project/service" xmlns:tns="http://te2m.de/api/ext/project" xmlns:ucns="http://te2m.de/api/ext/project/uc" elementFormDefault="qualified" targetNamespace="http://te2m.de/api/ext/project" version="1.0">
+
+  <xs:import namespace="http://te2m.de/api/ext/project/bo" schemaLocation="te2m_project_bo_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/project/config" schemaLocation="te2m_project_config_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/project/service" schemaLocation="te2m_project_service_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/project/uc" schemaLocation="te2m_project_uc_1.0-SNAPSHOT.xsd"/>
+
+  <xs:import namespace="http://te2m.de/api/ext/core" schemaLocation="te2m_core_1.0-SNAPSHOT.xsd"/>
+
+  <xs:element name="project" type="tns:project"/>
+
+  <xs:complexType name="project">
+    <xs:complexContent>
+      <xs:extension base="cns:basicDocumentedObject">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cfgParameterDefinitions" nillable="true" type="bns:parameterInfo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="configurationProfiles" nillable="true" type="cfgns:cfgProfile"/>
+          <xs:element minOccurs="0" name="licenseInfo" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="objects" nillable="true" type="bns:classInfo"/>
+          <xs:element minOccurs="0" name="organization" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="systems" nillable="true" type="sns:systemInfo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="usecases" nillable="true" type="ucns:useCase"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

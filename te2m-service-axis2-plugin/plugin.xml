@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            name="temtools 4 services"
+            id="de.te2m.eclipse.service.tools.plugin.wizard.sampleCategory">
+      </category>
+      <wizard
+            name="Create mvn Service Project (AXIS2)"
+            icon="icons/sample.gif"
+            category="de.te2m.eclipse.service.tools.plugin.wizard.sampleCategory"
+            class="de.te2m.eclipse.service.tools.plugin.wizard.WSDLImportWizard"
+            id="de.te2m.eclipse.service.tools.plugin.wizard.WSDLImportWizard">
+         <description>
+            Import a file from the local file system into the workspace.
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>

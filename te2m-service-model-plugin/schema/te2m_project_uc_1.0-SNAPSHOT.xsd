@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cns="http://te2m.de/api/ext/core" xmlns:ucns="http://te2m.de/api/ext/project/uc" elementFormDefault="qualified" targetNamespace="http://te2m.de/api/ext/project/uc" version="1.0">
+
+  <xs:import namespace="http://te2m.de/api/ext/core" schemaLocation="te2m_core_1.0-SNAPSHOT.xsd"/>
+
+  <xs:complexType name="persona">
+    <xs:complexContent>
+      <xs:extension base="ucns:requirement">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="requirement">
+    <xs:complexContent>
+      <xs:extension base="cns:idObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="useCase">
+    <xs:complexContent>
+      <xs:extension base="ucns:requirement">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="nonfunctionalRequirement">
+    <xs:complexContent>
+      <xs:extension base="ucns:requirement">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

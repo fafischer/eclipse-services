@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Lazy Developers Survival Kit - AXIS 2 Tools
+Bundle-SymbolicName: te2m-service-axis2-plugin;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: te2m_service_tools_plugin.Activator
+Bundle-Vendor: www.te2m.de
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

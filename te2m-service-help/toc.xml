@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Lazy Developers Survival Kit Table of Contents">
+	<topic label="Usage" href="html/usage.html"/>
+	<topic label="Setup"  href="html/setup.html"></topic>
+	<topic label="Customizing" href="html/customizing.html"/>
+	<topic label="Changes" href="html/changes.html"/>
+	<topic label="License" href="html/license.html"/>
+	<topic label="Contact" href="html/contact.html"/>
+</toc>

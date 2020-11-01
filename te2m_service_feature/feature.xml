@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="te2m_service_feature"
+      label="Lazy Developers Survival Kit - Modelling View"
+      version="1.0.0.qualifier"
+      provider-name="te2m.de">
+
+   <description url="http://te2m.de">
+      The &quot;Lazy Developers Survival Kit&quot; is a set of tools for reducing the need of writing boiler plate code by hand.
+   </description>
+
+   <copyright url="http://te2m.de">
+      (c) 2009 - 2015 Frank Fischer (frank@te2m.de)
+   </copyright>
+
+   <license url="http://www.gnu.org/licenses/">
+      The &quot;Lazy Developers Survival Kit&quot; is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation (version 2 of the License).
+&quot;Lazy Developers Survival Kit&quot; is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with this software. If not, see http://www.gnu.org/licenses/.
+   </license>
+
+   <plugin
+         id="te2m-service-axis2-plugin"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="te2m-service-model-plugin"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

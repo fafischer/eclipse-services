@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/te2m_service_feature_1.0.0.qualifier.jar" id="te2m_service_feature" version="1.0.0.qualifier">
+      <category name="ldsk"/>
+   </feature>
+   <category-def name="ldsk" label="Lazy Developers Survival Kit"/>
+</site>
